@@ -35,7 +35,7 @@ function doThis(command, searchTerm) {
       movieThis.run(searchTerm);
       break;
     case "do-what-it-says":
-      doWhatItSays.run(searchTerm);
+      doWhatItSays.run(doThis);
       break;
     default:
       console.log(INVALID);
