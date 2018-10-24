@@ -38,7 +38,7 @@ function doThis(command, searchTerm) {
       doWhatItSays.run(searchTerm);
       break;
     default:
-      Console.log(INVALID);
+      console.log(INVALID);
   }
 }
 
