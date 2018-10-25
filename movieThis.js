@@ -1,9 +1,9 @@
-const request = require("request");
-const keys = require("./keys.js");
-const output = require("./output.js");
+var request = require("request");
+var keys = require("./keys.js");
+var output = require("./output.js");
 
 function run(searchTerm) {
-  let resultsString = "--".repeat(45) + "\nnode liri.js {movie-this}";
+  var resultsString = "--".repeat(45) + "\nnode liri.js {movie-this}";
   resultsString += searchTerm ? ' "' + searchTerm + '"\n' + "--".repeat(18) + "\n" : "\n" + " --".repeat(18) + "\n";
 
   if (searchTerm) {
@@ -15,14 +15,14 @@ function run(searchTerm) {
 }
 
 function search(searchTerm, resultsString) {
-  const queryURL = `http://omdbapi.com/?apikey=${keys.omdb.apiKey}&t=${searchTerm}`;
+  var queryURL = `http://omdbapi.com/?apikey=${keys.omdb.apiKey}&t=${searchTerm}`;
 
   request(queryURL, function(error, response, body) {
     if (error) {
       resultsString += " There was an error searching the API:\n" + error;
     }
     else {
-      const parsedBody = JSON.parse(body);
+      var parsedBody = JSON.parse(body);
       if (parsedBody.Response === "True") {
         resultsString += " I found the movie you were looking for.\n" + " " + "--".repeat(20);
         resultsString += createMovieInfoString(parsedBody);
@@ -36,8 +36,8 @@ function search(searchTerm, resultsString) {
 }
 
 function createMovieInfoString(responseBody) {
-  let movieInfoString = "";
-  let imdbRating, rottenTomatoesRating = null;
+  var movieInfoString = "";
+  var imdbRating, rottenTomatoesRating = null;
   if (responseBody.Ratings) {
     responseBody.Ratings.forEach(function(value) {
       if (value.Source[0] === "I") {

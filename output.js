@@ -1,4 +1,4 @@
-const fs = require("fs");
+var fs = require("fs");
 
 function report(results) {
   results += "\n" + "_".repeat(45) + "\n";

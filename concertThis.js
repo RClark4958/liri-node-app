@@ -1,16 +1,16 @@
-const request = require("request");
+var request = require("request");
 
-const moment = require("moment");
+var moment = require("moment");
 
-const keys = require("./keys.js");
+var keys = require("./keys.js");
 
-const output = require("./output.js");
+var output = require("./output.js");
 
 function run(searchTerm) {
   if (searchTerm) {
-    const queryURL = `https://rest.bandsintown.com/artists/${searchTerm}/events?app_id=${keys.bandsInTown.id}`;
+    var queryURL = `https://rest.bandsintown.com/artists/${searchTerm}/events?app_id=${keys.bandsInTown.id}`;
     request(queryURL, function (error, response, body) {
-      let resultsString = "-".repeat(45) + '\nnode liri.js {concert-this} "' + searchTerm + '"\n' + "-".repeat(18) + "\n";
+      var resultsString = "-".repeat(45) + '\nnode liri.js {concert-this} "' + searchTerm + '"\n' + "-".repeat(18) + "\n";
       if (error) {
         resultsString += " There was an error searching the API:\n" + error;
       }
@@ -20,14 +20,14 @@ function run(searchTerm) {
             resultsString += " Sorry, that artist has no scheduled events.";
           }
           else {
-            let parsedBody = JSON.parse(body);
+            var parsedBody = JSON.parse(body);
             resultsString += " I found " + parsedBody.length + " scheduled events for that artist.";
             parsedBody.forEach(function(event, index) {
-              let headDivider = "\n -< " + (index + 1) + " >" + "-".repeat(30);
+              var headDivider = "\n -< " + (index + 1) + " >" + "-".repeat(30);
               if (index < 9) { 
                 headDivider += "-";
               }
-              let eventString = createConcertInfoString(event);
+              var eventString = createConcertInfoString(event);
               resultsString += headDivider + eventString;
             });
           }
@@ -48,7 +48,7 @@ function run(searchTerm) {
 }
 
 function createConcertInfoString(event) {
-  let result = "";
+  var result = "";
   if (event.venue) {
     if (event.venue.name) {
       result += "\n Venue " + event.venue.name;
