@@ -16,6 +16,13 @@ LIRI takes specific commands and retrieves info for the user.
 
 2. To operate LIRI: clone the repository, run an "npm install", and launch the liri.js file with node.
 
+3. LIRI responds to the following commands:
+
+   node liri.js concert-this (artist/band name here)
+   node liri.js spotify-this-song (song name here)
+   node liri.js movie-this (movie name here)
+   node liri.js do-what-it-says (.txt file here)
+
 ## Contributors
 
 This project is maintained by Rick Clark
